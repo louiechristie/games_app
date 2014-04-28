@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  challenger_id: 1
+  invitee_id: 1
+  winner_id: 1
+  score: 1
+  next_turn_id: 1
+
+two:
+  challenger_id: 1
+  invitee_id: 1
+  winner_id: 1
+  score: 1
+  next_turn_id: 1
