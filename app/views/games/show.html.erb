@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Game</h2>
+
+<p><strong>Challenger: </strong><%= @game.challenger.try(:name) %></p>
+
+<p><strong>Invitee: </strong><%= @game.invitee.try(:name) %></p>
+
+<p>
+  <table>
+    <tr>
+      <td><%= @game.board[0] %></td>
+      <td><%= @game.board[1] %></td>
+      <td><%= @game.board[2] %></td> 
+    </tr>
+    <tr>
+      <td><%= @game.board[3] %></td>
+      <td><%= @game.board[4] %></td>
+      <td><%= @game.board[5] %></td> 
+    </tr>
+    <tr>
+      <td><%= @game.board[6] %></td>
+      <td><%= @game.board[7] %></td>
+      <td><%= @game.board[8] %></td> 
+    </tr>
+  </table>
+</p>
+
+<p><%= link_to "Home", games_path %></p>

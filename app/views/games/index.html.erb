@@ -1,0 +1,17 @@
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+          <td><strong>Challenger: </strong><%= game.challenger.try(:name) %></td>
+          <td><strong>Invitee: </strong><%= game.challenger.try(:name) %></td>
+          <td><%= link_to("Show", game_path(game.id)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

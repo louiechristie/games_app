@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GamesApp</title>
+  <title>Games App</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <header>
+    <h1><%= link_to "Games App", games_path %></h1>
+  </header>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
