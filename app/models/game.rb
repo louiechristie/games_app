@@ -1,10 +1,9 @@
 class Game < ActiveRecord::Base
-  attr_accessible :challenger_id, :invitee_id, :score, :winner_id
+  attr_accessible :challenger_id, :invitee_id, :score
   
   has_many :moves
   belongs_to :challenger, class_name: 'User' 
   belongs_to :invitee, class_name: 'User'
-  belongs_to :winner, class_name: 'User'
 
   validates :challenger_id, presence: true
   validates :invitee_id, presence: true
@@ -27,10 +26,6 @@ def board
     end
   end
 
-  # puts "#{board[0]}|#{board[1]}|#{board[2]}"
-  # puts "#{board[3]}|#{board[4]}|#{board[5]}"
-  # puts "#{board[6]}|#{board[7]}|#{board[8]}"
-  puts board.inspect
   board
 end
 
