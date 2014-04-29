@@ -11,10 +11,5 @@ class MovesController < ApplicationController
     redirect_to @game
   end
 
-
-  def show
-    @moves = Moves.all
-  end
-
 end
   
