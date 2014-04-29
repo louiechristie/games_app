@@ -1,6 +1,6 @@
 GamesApp::Application.routes.draw do
 
-  resources :games
+  resources :games, :moves
 
   root to: "games#index"
 

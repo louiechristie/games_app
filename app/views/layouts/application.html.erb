@@ -8,7 +8,8 @@
 </head>
 <body>
   <header>
-    <h1><%= link_to "Games App", games_path %></h1>
+    <p><%= link_to "Games App", games_path %>
+     <%= link_to "New Game", new_game_path %></p>
   </header>
   <div class="container">
     <%= yield %>

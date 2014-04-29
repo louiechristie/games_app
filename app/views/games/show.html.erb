@@ -6,8 +6,14 @@
 
 <p><strong>Invitee: </strong><%= @game.invitee.try(:name) %></p>
 
+<% if @game.winning_game? %>
+<p><strong>Winner: </strong><%= @game.moves.last.user.name %></p>
+<% else %>
+<p><strong>Whose Turn: </strong><%= @game.whose_turn.name %></p>
+<% end %>
+
 <p>
-  <table>
+  <table class="board">
     <tr>
       <td><%= @game.board[0] %></td>
       <td><%= @game.board[1] %></td>
@@ -25,5 +31,25 @@
     </tr>
   </table>
 </p>
+<% unless @game.winning_game? %>
+
+  <h3>Make Move </h3>
+
+  <%= form_for(@move) do |form| %>
+
+      <%= form.hidden_field :user_id %>
+      <%= form.hidden_field :game_id %>
+
+    <div class="field">
+      <%= form.label :square %> 0-8<br />
+      <%= form.text_field :square %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>
+
 
 <p><%= link_to "Home", games_path %></p>

@@ -10,26 +10,11 @@ class Game < ActiveRecord::Base
   validates :invitee_id, presence: true
 
 
-  
-
   def make_move(user, square)
 
-      moves.build(user_id: user.id, square: square)
+    moves.build(user_id: user.id, square: square)
 
   end
-
-  def valid_move?(user, square)
-    if user.id != next_turn_id
-      errors.add(:base, "Not your turn")
-      false
-    elsif self.moves.find_by(square: square)
-      errors.add(:base, "Square not empty")
-      false
-    else
-      true
-    end
-  end
-
 
 def board
   board = []
@@ -41,10 +26,11 @@ def board
         board[move.square] = "o"
     end
   end
-  puts "#{board[0]}|#{board[1]}|#{board[2]}"
-  puts "#{board[3]}|#{board[4]}|#{board[5]}"
-  puts "#{board[6]}|#{board[7]}|#{board[8]}"
 
+  # puts "#{board[0]}|#{board[1]}|#{board[2]}"
+  # puts "#{board[3]}|#{board[4]}|#{board[5]}"
+  # puts "#{board[6]}|#{board[7]}|#{board[8]}"
+  puts board.inspect
   board
 end
 

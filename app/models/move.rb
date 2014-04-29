@@ -8,20 +8,12 @@ class Move < ActiveRecord::Base
   validates :user_id, presence: true
   validates :square, presence: true
 
-  after_create :toggle_turn
+  after_save :check_game_won
 
-  private
-  def toggle_turn
+  def check_game_won
 
-    if game.winning_move?(user, square)
+    if game.winning_game?
       game.winner_id == user_id
-        
-    else
-      if user_id == game.challenger_id
-        game.next_turn_id = game.invitee_id
-      else
-        game.next_turn_id == game.challenger_id
-      end
     end
     
     game.save

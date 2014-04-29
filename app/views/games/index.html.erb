@@ -9,7 +9,7 @@
       <% @games.each do |game| %>
         <tr>
           <td><strong>Challenger: </strong><%= game.challenger.try(:name) %></td>
-          <td><strong>Invitee: </strong><%= game.challenger.try(:name) %></td>
+          <td><strong>Invitee: </strong><%= game.invitee.try(:name) %></td>
           <td><%= link_to("Show", game_path(game.id)) %></td>
         </tr>
       <% end %>
