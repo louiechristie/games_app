@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= form.label :invitee_id %> <br />
-    <%= form.collection_select(:invitee_id, User.all, :id, :name) %>
+    <%= form.collection_select(:invitee_id, User.all, :id, :name, selected: User.last.id) %>
   </div>
 
   <div class="actions">

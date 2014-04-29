@@ -1,16 +1,26 @@
 <table>
     <thead>
       <tr>
+        <th>Challenger</th>
+        <th>Invitee</th>
+        <th>Turn</th>
         <th></th>
-        <th></th>
-        <th></th>
+
     </thead>
     <tbody>
       <% @games.each do |game| %>
         <tr>
-          <td><strong>Challenger: </strong><%= game.challenger.try(:name) %></td>
-          <td><strong>Invitee: </strong><%= game.invitee.try(:name) %></td>
+          <td><%= game.challenger.try(:name) %></td>
+          <td><%= game.invitee.try(:name) %></td>
+          <td>
+            <% if game.winning_game? %>
+              Winner: <%= game.moves.last.user.name %>
+              <% else %>
+              Turn: <%= game.whose_turn.name %>
+            <% end %>
+          </td>
           <td><%= link_to("Show", game_path(game.id)) %></td>
+
         </tr>
       <% end %>
     </tbody>
