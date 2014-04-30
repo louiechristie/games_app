@@ -15,7 +15,7 @@
 <p>
   <table class="board">
     <tr>
-      <td> <%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 0}) %> <%=  %></td>
+      <td> <%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 0}) %> <%= @game.board[0] %></td>
       <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 1}) %> <%= @game.board[1] %></td>
       <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 2}) %><%= @game.board[2] %></td> 
     </tr>
