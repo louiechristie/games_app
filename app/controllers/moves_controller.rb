@@ -6,11 +6,17 @@ class MovesController < ApplicationController
     
     @game = Game.find(params[:move].delete(:game_id))
 
-    @move = @game.moves.build(params[:move]) 
+    if current_user == @game.whose_turn || current_user.role = "admin"
 
-    unless @move.save
-      flash[:notice] = "Could not make move due to the following errors: " + @move.errors.full_messages.to_sentence
+      @move = @game.moves.build(params[:move]) 
+
+      unless @move.save
+        flash[:notice] = "Could not make move due to the following errors: " + @move.errors.full_messages.to_sentence
+      end
+    else
+      flash[:notice] = "Could not make move because it's not your turn"
     end
+
     redirect_to @game
   end
 

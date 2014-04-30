@@ -7,6 +7,8 @@ class Ability
     if user.role? :admin
       can :manage, :all
     elsif user.role? :user
+      can :read, Game 
+      can :read, Move
       can :create, Game
       can :create, Move
     else

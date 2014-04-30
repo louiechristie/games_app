@@ -29,7 +29,12 @@
               Turn: <%= game.whose_turn.name %>
             <% end %>
           </td>
-          <td><%= link_to("Show", game_path(game.id)) %></td>
+          <td>
+            <%= link_to("Show", game_path(game.id)) %>
+            <% if can? :destory, Game %>
+              <%= link_to("Delete", game_path(game.id), method: :delete) %>
+            <% end %>
+          </td>
         </tr>
 
       <% end %>

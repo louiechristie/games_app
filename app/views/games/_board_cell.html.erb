@@ -5,7 +5,9 @@
 
 <% if @game.game_is_finished? %>
   <%= label %>
-<% elsif current_user && current_user != @game.whose_turn %>
+<% elsif !current_user %>
+  <%= label %>
+<% elsif current_user && current_user != @game.whose_turn && current_user.role != "admin"%>
   <%= label %>
 <% elsif square %>
   <%= label %>

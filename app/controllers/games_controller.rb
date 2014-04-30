@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if current_user
+    if current_user && current_user.role != "admin"
       @games = Game.where(challenger_id: current_user) | Game.where( invitee_id: current_user)
     else
       @games = Game.all
@@ -17,7 +17,7 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
-    @game.challenger = current_user if current_user
+    @game.challenger = current_user if current_user && current_user.role != "admin"
   end
 
   def create
@@ -30,7 +30,12 @@ class GamesController < ApplicationController
       redirect_to @game
     end
 
+  end
 
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to games_path
   end
 
 end

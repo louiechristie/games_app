@@ -13,20 +13,20 @@
     </div>
   <% end %>
 
-  <% if current_user %>
+  <% if current_user && current_user.role != "admin" %>
     <%= form.hidden_field(:challenger_id) %> 
 
   <% else %> 
 
     <div class="field">
       <%= form.label :challenger_id %><br />
-      <%= form.collection_select(:challenger_id, User.all, :id, :name) %>  
+      <%= form.collection_select(:challenger_id, User.all.reject {|user| user.role == "admin"}, :id, :name) %>  
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :invitee_id %> <br />
-    <%= form.collection_select(:invitee_id, User.all, :id, :name) %>
+    <%= form.label "Invite" %> <br />
+    <%= form.collection_select(:invitee_id, User.all.reject {|user| user == current_user || user.role == "admin"}, :id, :name) %>
   </div>
 
   <div class="actions">
