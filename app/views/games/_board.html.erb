@@ -1,0 +1,11 @@
+<table class="board">
+
+  <% (0..8).each_slice(3) do |slice| %>
+
+  <tr>
+    <% slice.each do |i| %>
+      <% @index = i %><%= render "board_cell" %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

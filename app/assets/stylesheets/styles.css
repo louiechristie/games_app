@@ -4,7 +4,7 @@ body {
   font-size: 16px;
 }
 table {
-  border-collapse:collapse;
+  border-collapse: collapse;
 }
 td, td, th {
   padding: 14px;
@@ -52,4 +52,12 @@ textarea, input {
 
 .board td {
   border: 1px solid black;
+  padding: 0;
+}
+.board input {
+  background-color: white;
+  border: 0;
+  width: 50px;
+  height: 50px;
+  margin: 0;
 }

@@ -1,0 +1,11 @@
+<td>
+<% square = @game.board[@index] %>
+
+<% square.nil? ? label = " " : label = square %>
+
+<% if @game.game_is_finished? %>
+<%= label %>
+<% else %>  
+<%= button_to label, moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: @index}) %>
+<% end %>
+</td>

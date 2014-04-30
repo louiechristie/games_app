@@ -12,44 +12,7 @@
 <p><strong>Whose Turn: </strong><%= @game.whose_turn.name %></p>
 <% end %>
 
-<p>
-  <table class="board">
-    <tr>
-      <td> <%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 0}) %> <%= @game.board[0] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 1}) %> <%= @game.board[1] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 2}) %><%= @game.board[2] %></td> 
-    </tr>
-    <tr>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 3}) %><%= @game.board[3] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 4}) %><%= @game.board[4] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 5}) %><%= @game.board[5] %></td> 
-    </tr>
-    <tr>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 6}) %><%= @game.board[6] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 7}) %><%= @game.board[7] %></td>
-      <td><%= button_to 'move', moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: 8}) %><%= @game.board[8] %></td> 
-    </tr>
-  </table>
-</p>
-<% unless @game.winning_game? %>
 
-  <h3>Make Move </h3>
-
-  <%= form_for(@move) do |form| %>
-
-      <%= form.hidden_field :user_id %>
-      <%= form.hidden_field :game_id %>
-
-    <div class="field">
-      <%= form.label :square %> 0-8<br />
-      <%= form.text_field :square %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-<% end %>
-
+<%= render "board" %>
 
 <p><%= link_to "Home", games_path %></p>
