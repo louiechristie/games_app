@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h2>User</h2>
+
+<p><strong>Name: </strong><%= @user.try(:name) %></p>
+
+<p><strong>Email: </strong><%= @user.try(:email) %></p>
+
+<p><%= link_to "Edit", edit_user_path %></p>
+
+<p><%= link_to "Home", games_path %></p>

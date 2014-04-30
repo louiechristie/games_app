@@ -1,0 +1,23 @@
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Passord Set</th>
+        <th></th>
+
+    </thead>
+    <tbody>
+      <% @users.sort_by{|e| e[:created_at]}.reverse!.each do |user| %>
+      <tr>
+          <td><%= user.try(:name) %></td>
+          <td><%= user.try(:email) %></td>
+          <td>
+            <%= !!user.try(:password_digest) %>
+          </td>
+          <td><%= link_to("Show", user_path(user.id)) %></td>
+        </tr>
+
+      <% end %>
+    </tbody>
+  </table>
