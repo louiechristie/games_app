@@ -8,8 +8,14 @@
 
     </thead>
     <tbody>
-      <% @games.each do |game| %>
+      <% @games.sort_by{|e| e[:created_at]}.reverse!.each do |game| %>
+
+       <% if game.game_is_finished? %>
+        <tr class="inactive">
+      <% else %>
         <tr>
+      <% end %>
+
           <td><%= game.challenger.try(:name) %></td>
           <td><%= game.invitee.try(:name) %></td>
           <td>
@@ -22,8 +28,8 @@
             <% end %>
           </td>
           <td><%= link_to("Show", game_path(game.id)) %></td>
-
         </tr>
+
       <% end %>
     </tbody>
   </table>

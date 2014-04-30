@@ -65,3 +65,6 @@ textarea, input {
   height: 50px;
   margin: 0;
 }
+.inactive {
+  color: gray;
+}

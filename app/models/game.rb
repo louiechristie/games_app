@@ -10,14 +10,12 @@ class Game < ActiveRecord::Base
 
 
   def make_move(user, square)
-
     moves.build(user_id: user.id, square: square)
-
   end
 
-def board
-  board = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
-  self.moves.order(:created_at).each do |move|
+  def board
+    board = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
+    self.moves.each do |move|
     case move.user_id
       when self.challenger_id
         board[move.square] = "x"
@@ -82,4 +80,5 @@ end
 #   def there_is_a_challenger_id?
 #     !!challenger_id
 #   end
+
 end
