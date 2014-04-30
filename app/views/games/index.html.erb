@@ -3,7 +3,7 @@
       <tr>
         <th>Challenger</th>
         <th>Invitee</th>
-        <th>Turn</th>
+        <th>Status</th>
         <th></th>
 
     </thead>
@@ -15,7 +15,9 @@
           <td>
             <% if game.winning_game? %>
               Winner: <%= game.moves.last.user.name %>
-              <% else %>
+            <% elsif game.drawn_game? %>
+              Draw
+            <% else %>
               Turn: <%= game.whose_turn.name %>
             <% end %>
           </td>

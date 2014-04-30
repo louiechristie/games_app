@@ -53,6 +53,10 @@ textarea, input {
 .board td {
   border: 1px solid black;
   padding: 0;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  text-align: center;
 }
 .board input {
   background-color: white;

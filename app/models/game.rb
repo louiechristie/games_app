@@ -16,7 +16,7 @@ class Game < ActiveRecord::Base
   end
 
 def board
-  board = []
+  board = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
   self.moves.order(:created_at).each do |move|
     case move.user_id
       when self.challenger_id

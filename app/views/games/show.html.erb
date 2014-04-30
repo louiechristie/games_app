@@ -6,11 +6,19 @@
 
 <p><strong>Invitee O: </strong><%= @game.invitee.try(:name) %></p>
 
-<% if @game.winning_game? %>
-<p><strong>Winner: </strong><%= @game.moves.last.user.name %></p>
+<p><strong>Status: </strong>
+<% if @game.game_is_finished? %>
+  
+  <% if @game.winning_game? %>
+    Winner: <%= @game.moves.last.user.name %>
+  <% else %>
+    Draw 
+  <% end %>
+
 <% else %>
-<p><strong>Whose Turn: </strong><%= @game.whose_turn.name %></p>
+  Whose Turn: <%= @game.whose_turn.name %>
 <% end %>
+</p>
 
 
 <%= render "board" %>
