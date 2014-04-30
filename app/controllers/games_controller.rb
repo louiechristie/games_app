@@ -1,7 +1,11 @@
 class GamesController < ApplicationController
 
   def index
-    @games = Game.all
+    if current_user
+      @games = Game.where(challenger_id: current_user) | Game.where( invitee_id: current_user)
+    else
+      @games = Game.all
+    end
   end
 
   def show
@@ -11,6 +15,7 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    @game.challenger = current_user if current_user
   end
 
   def create

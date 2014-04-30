@@ -5,9 +5,11 @@
 
 <% if @game.game_is_finished? %>
   <%= label %>
+<% elsif current_user && current_user != @game.whose_turn %>
+  <%= label %>
 <% elsif square %>
   <%= label %>
-<% else %>  
+<% else %>
   <%= button_to label, moves_path(move: {user_id: @game.whose_turn.id, game_id: @game.id, square: @index}) %>
 <% end %>
 </td>
