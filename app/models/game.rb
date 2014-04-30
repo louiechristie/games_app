@@ -17,7 +17,7 @@ class Game < ActiveRecord::Base
 
 def board
   board = []
-  self.moves.each do |move|
+  self.moves.order(:created_at).each do |move|
     case move.user_id
       when self.challenger_id
         board[move.square] = "x"
