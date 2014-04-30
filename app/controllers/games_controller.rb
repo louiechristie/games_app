@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
     if current_user
       @games = Game.where(challenger_id: current_user) | Game.where( invitee_id: current_user)
