@@ -1,9 +1,12 @@
 GamesApp::Application.routes.draw do
 
-  resources :games, :moves, :users
-
   root to: "games#index"
 
+  resources :games, :moves, :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get 'login', to: 'sessions#new'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
