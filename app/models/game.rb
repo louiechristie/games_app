@@ -16,12 +16,10 @@ class Game < ActiveRecord::Base
   end
 
   def computer_move
-    move = moves.build(user_id: invitee.id)
+    square = empty_squares.sample
+    move = moves.build(square: square, user_id: invitee.id)
 
-    move.square = rand(0..8)
-    
     move.save
-        
   end
 
   def score(user)
@@ -46,6 +44,18 @@ class Game < ActiveRecord::Base
     end
 
     board
+  end
+
+  def empty_squares
+    result = []
+    (0..8).each do |index|
+      square = board[index]
+
+      if square.nil?
+        result << index
+      end
+    end
+    result
   end
 
 

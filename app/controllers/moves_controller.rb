@@ -11,7 +11,8 @@ class MovesController < ApplicationController
       @move = @game.moves.build(params[:move]) 
 
       unless @move.save
-        flash[:notice] = "Could not make move due to the following errors: " + @move.errors.full_messages.to_sentence
+        flash[:notice] = "Could not make move due to the following errors: oioi" + @move.errors.full_messages.to_sentence
+        raise
       end
     else
       flash[:notice] = "Could not make move because it's not your turn"

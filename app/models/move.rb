@@ -15,7 +15,7 @@ class Move < ActiveRecord::Base
   validate :square_in_bounds
 
   after_save do |move|
-    if move.game.against_computer?
+    if move.game.against_computer? && game.whose_turn.name = "Computer"
       move.game.computer_move
     end
   end
