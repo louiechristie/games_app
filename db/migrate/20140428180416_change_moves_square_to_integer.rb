@@ -1,5 +1,5 @@
 class ChangeMovesSquareToInteger < ActiveRecord::Migration
   def change
-    change_column :moves, :square, :integer
+    ALTER TABLE moves ALTER COLUMN square TYPE integer
   end
 end
