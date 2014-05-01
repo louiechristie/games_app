@@ -5,8 +5,10 @@ class UsersController < ApplicationController
   def index
     if current_user && current_user.role == "admin"
       @users = User.all
+      @users = @users.sort_by{|user| total_score(user)}.reverse!
     else
       @users = User.where(role: "user")
+      @users = @users.sort_by{|user| total_score(user)}.reverse!
     end
   end
 
@@ -24,7 +26,9 @@ class UsersController < ApplicationController
       if current_user && current_user.role == "admin"
         redirect_to users_path
       else
-        redirect_to new_session_path 
+       session[:user_id] = @user.id
+
+        redirect_to root_path, notice: "Registered and logged in."      
       end
     else
      render 'new'
@@ -39,6 +43,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     redirect_to(user_path)
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to games_path
   end
 
 end

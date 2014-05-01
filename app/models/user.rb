@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
-  has_many :games_as_invitee, class_name: 'Game', foreign_key: 'invitee_id'
-  has_many :games_as_challenger, class_name: 'Game', foreign_key: 'challenger_id'
+  has_many :games_as_invitee, dependent: :destroy, class_name: 'Game', foreign_key: 'invitee_id'
+  has_many :games_as_challenger, dependent: :destroy, class_name: 'Game', foreign_key: 'challenger_id'
 
   def role?(role)
     self.role.to_s == role.to_s

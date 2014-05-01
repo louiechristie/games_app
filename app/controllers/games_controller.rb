@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   def index
     if current_user && current_user.role != "admin"
       @games = users_games(current_user)
+      @games.sort_by{|e| e[:created_at]}.reverse!
     else
       @games = Game.all
     end
