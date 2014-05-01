@@ -1,7 +1,6 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   background-color: #84D1E0;
-  font-size: 16px;
 }
 table {
   border-collapse: collapse;
@@ -16,9 +15,19 @@ header, footer, .container {
   border-radius: 20px;
   border: 4px solid #69A7B3;
   padding: 0px 40px;
-  font-size: 16px;
+  font-size: 14px;
 }
-
+header ul {
+  padding: 0;
+}
+header li {
+  display: inline;
+  padding: 0 8px;
+  font-size: 18px;
+}
+header a {
+  text-decoration: none;
+}
 footer {
   text-align: center;
   font-size: small;

@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :challenger_id, :invitee_id, :score
+  attr_accessible :challenger_id, :invitee_id
   
   has_many :moves
   belongs_to :challenger, class_name: 'User' 
@@ -17,9 +17,10 @@ class Game < ActiveRecord::Base
 
   def computer_move
     square = empty_squares.sample
-    move = moves.build(square: square, user_id: invitee.id)
 
+    move = moves.build(square: square, user_id: invitee.id)
     move.save
+    
   end
 
   def score(user)
