@@ -39,9 +39,7 @@ footer {
 h1 a {
   text-decoration: none;
 }
-a {
-    color: #3C5F66;
-}
+
 a:hover {
   color: gray;
 }
@@ -77,9 +75,9 @@ textarea, input {
 .inactive {
   color: gray;
 }
-.won {
+.won, .won a {
   color: green;
 }
-.draw {
+.draw, .draw a {
   color: brown;
 }

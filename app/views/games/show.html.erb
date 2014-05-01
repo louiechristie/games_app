@@ -12,17 +12,31 @@
 <% if @game.game_is_finished? %>
   
   <% if @game.winning_game? %>
-    <div class="won">Winner: <%= @game.moves.last.user.name %></div>
+    <span class="won">Winner: <%= @game.moves.last.user.name %></span>
   <% else %>
-    <div class="draw">Draw</div> 
+    <span class="draw">Draw</span> 
   <% end %>
 
 <% else %>
-  Whose Turn: <%= @game.whose_turn.name %>
+  <% if current_user && current_user.role != "admin" %>
+    <%if current_user == @game.whose_turn %>
+      <strong>Your Turn</strong>
+    <% else %>
+      <strong><span class="inactive">Their Turn<span></strong>
+    <% end %>
+  <% else %>
+    Whose Turn: <%= @game.whose_turn.name %>
+  <% end %>
 <% end %>
 </p>
+<% if @game.game_is_finished? || (current_user && current_user.role != "admin" && @game.whose_turn != current_user) %> 
+  <div class="inactive">
+   <%= render "board" %>
+  </div>
+<% else %>
+     <%= render "board" %>
+<% end %>
 
 
-<%= render "board" %>
 
 <p><%= link_to "Home", games_path %></p>

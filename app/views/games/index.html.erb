@@ -33,11 +33,19 @@
           <td><%= game.invitee.try(:name) %></td>
           <td>
             <% if game.winning_game? %>
-              <span class="won">Winner: <%= game.last_turn.name %></span>
+              <span class="won"><%= link_to("Winner: #{game.last_turn.name}", game_path(game.id)) %></span>
             <% elsif game.drawn_game? %>
-              <span class="draw">Draw</span>
+              <span class="draw"><%= link_to("Draw", game_path(game.id)) %></span>
             <% else %>
-              Turn: <%= game.whose_turn.name %>
+              <% if current_user && current_user.role != "admin" %>
+                  <%if current_user == game.whose_turn %>
+                    <strong><%= link_to("Your Turn", game_path(game.id)) %></strong>
+                  <% else %>
+                    <%= link_to("Their Turn", game_path(game.id)) %>
+                  <% end %>
+                <% else %>
+                  <%= link_to("Turn: #{game.whose_turn.name}", game_path(game.id)) %>
+                <% end %>
             <% end %>
           </td>
           <td>
@@ -45,7 +53,6 @@
             <% end %>
           </td>
           <td>
-            <%= link_to("Show Game", game_path(game.id)) %>
             <% if can? :destory, Game %>
               <%= link_to("Delete", game_path(game.id), method: :delete) %>
             <% end %>
