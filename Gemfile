@@ -5,7 +5,10 @@ gem 'rails', '3.2.17'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
@@ -44,4 +47,5 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'sqlite3'
 end
