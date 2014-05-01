@@ -17,7 +17,7 @@
         <th>Status</th>
         <th><% if current_user && current_user.role != "admin" %>Score<% end %></th>
         <th></th>
-
+        <th>Started</th>
 
     </thead>
     <tbody>
@@ -29,14 +29,13 @@
       <% else %>
         <tr>
       <% end %>
-
           <td><%= game.challenger.try(:name) %></td>
           <td><%= game.invitee.try(:name) %></td>
           <td>
             <% if game.winning_game? %>
-              Winner: <%= game.last_turn.name %>
+              <span class="won">Winner: <%= game.last_turn.name %></span>
             <% elsif game.drawn_game? %>
-              Draw
+              <span class="draw">Draw</span>
             <% else %>
               Turn: <%= game.whose_turn.name %>
             <% end %>
@@ -51,6 +50,7 @@
               <%= link_to("Delete", game_path(game.id), method: :delete) %>
             <% end %>
           </td>
+          <td><%= time_ago_in_words(game.try(:created_at)) %> ago</td>
         </tr>
       <% end %>
     </tbody>
