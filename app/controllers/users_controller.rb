@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     else
       @users = User.where(role: "user")
     end
-    
   end
 
   def show

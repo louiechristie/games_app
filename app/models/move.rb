@@ -14,6 +14,12 @@ class Move < ActiveRecord::Base
   validate :users_turn
   validate :square_in_bounds
 
+  after_save do |move|
+    if move.game.against_computer?
+      move.game.computer_move
+    end
+  end
+
   def game_in_progress
     errors.add(:game, "is finished") if game&& game.game_is_finished?
   end

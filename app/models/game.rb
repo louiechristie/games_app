@@ -11,6 +11,19 @@ class Game < ActiveRecord::Base
   validate :valid_challenger
   validate :valid_invitee
 
+  def against_computer?
+    invitee.name == "Computer"
+  end
+
+  def computer_move
+    move = moves.build(user_id: invitee.id)
+
+    move.square = rand(0..8)
+    
+    move.save
+        
+  end
+
   def score(user)
 
     return 0 unless game_is_finished?
@@ -34,6 +47,7 @@ class Game < ActiveRecord::Base
 
     board
   end
+
 
   def winning_move_positions
     [

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   before_save do |user|
-    user.role = "user"
+    user.role = "user" if !user.role
   end
 
 end
