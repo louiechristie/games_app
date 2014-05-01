@@ -12,9 +12,9 @@
 <% if @game.game_is_finished? %>
   
   <% if @game.winning_game? %>
-    Winner: <%= @game.moves.last.user.name %>
+    <div class="won">Winner: <%= @game.moves.last.user.name %></div>
   <% else %>
-    Draw 
+    <div class="draw">Draw</div> 
   <% end %>
 
 <% else %>

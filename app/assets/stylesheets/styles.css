@@ -77,3 +77,9 @@ textarea, input {
 .inactive {
   color: gray;
 }
+.won {
+  color: green;
+}
+.draw {
+  color: brown;
+}
