@@ -8,6 +8,10 @@ table {
 td, td, th {
   padding: 14px;
 }
+h1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 header, footer, .container {
   background-color: white;
   -webkit-border-radius: 20px;
@@ -46,9 +50,10 @@ a:hover {
 .field {
   margin: 10px;
   margin: 20px;
+  font-size: 18px;
 }
 
-textarea, input {
+textarea, input, select {
   max-height: 100px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -80,4 +85,7 @@ textarea, input {
 }
 .draw, .draw a {
   color: brown;
+}
+label, select {
+  font-size: 20px;
 }

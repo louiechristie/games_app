@@ -2,13 +2,20 @@
 
 
 <% if current_user && current_user.role != "admin" %>
-<h2>Stats</h2>
-<p>
-    Your total score is <%= total_score(current_user) %> points. 
+<h1>Your Score: <%= total_score(current_user) %> points</h1> 
 </p>
+<h2>Your Games</h2>
+
+<% elsif !current_user %>
+  <h2>Welcome</h2> 
+  <p>You are not logged in.  <%= link_to 'Login', login_path %>,  or <%= link_to "sign up", new_user_path %>.</p>
+  <h2>Games Being Played</h2>
+
+<% else %>
+  <h1>Admin Console</h1>
+  <h2>Games Being Played</h2>
 <% end %>
 
-<h2>Games</h2>
 <table>
     <thead>
       <tr>
@@ -18,8 +25,8 @@
         <th><% if current_user && current_user.role != "admin" %>Score<% end %></th>
         <th></th>
         <th>Started</th>
-
     </thead>
+
     <tbody>
 
       <% @games.each do |game| %>

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       else
        session[:user_id] = @user.id
 
-        redirect_to root_path, notice: "Registered and logged in."      
+        redirect_to new_game_path, notice: "Registered and logged in."      
       end
     else
      render 'new'
