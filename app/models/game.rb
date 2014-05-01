@@ -17,9 +17,12 @@ class Game < ActiveRecord::Base
 
   def computer_move
     square = empty_squares.sample
-
-    move = moves.build(square: square, user_id: invitee.id)
-    move.save
+    if square.nil?
+      errors.add(:square, "is nil. Computer move failed")
+    else
+      move = moves.build(square: square, user_id: invitee.id)
+      move.save
+    end
     
   end
 
@@ -35,7 +38,8 @@ class Game < ActiveRecord::Base
 
   def board
     board = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
-    self.moves.each do |move|
+    Move.where(game_id: self.id).each do |move|
+    #self.moves.each do |move|
       case move.user_id
         when self.challenger_id
           board[move.square] = "x"

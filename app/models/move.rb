@@ -6,7 +6,7 @@ class Move < ActiveRecord::Base
 
   validates :game_id, presence: true
   validates :user_id, presence: true
-  validates :square, presence: true
+  validates :square, presence: true, :allow_nil => false
 
   validate :game_in_progress
   validate :square_is_empty
@@ -25,7 +25,7 @@ class Move < ActiveRecord::Base
   end
 
   def square_is_empty
-  errors.add(:square, "is already played.") if game&& game.board[square]
+  errors.add(:square, "is already played.") if game && game.board[square]
   end
 
   def valid_user
