@@ -11,6 +11,16 @@ class Game < ActiveRecord::Base
   validate :valid_challenger
   validate :valid_invitee
 
+  def score(user)
+
+    return 0 unless game_is_finished?
+    return 50 if drawn_game?
+    if winning_game?
+      return 100 if user == last_turn
+      return 0 if user != last_turn
+    end
+  end
+
   def board
     board = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
     self.moves.each do |move|
@@ -58,6 +68,11 @@ class Game < ActiveRecord::Base
   def whose_turn
     return challenger if moves.empty?
     moves.last.user == challenger ? invitee : challenger
+  end
+
+  def last_turn
+    return nil if moves.empty?
+    return moves.last.user
   end
 
   def one_of_my_players?(user)

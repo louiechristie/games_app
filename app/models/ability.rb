@@ -9,11 +9,13 @@ class Ability
     elsif user.role? :user
       can :read, Game 
       can :read, Move
+      can :read, User
       can :create, Game
       can :create, Move
     else
       can :read, Game 
       can :read, Move
+      can :read, User
       can :create, User
     end
     

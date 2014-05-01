@@ -4,10 +4,11 @@ class GamesController < ApplicationController
 
   def index
     if current_user && current_user.role != "admin"
-      @games = Game.where(challenger_id: current_user) | Game.where( invitee_id: current_user)
+      @games = users_games(current_user)
     else
       @games = Game.all
     end
+  
   end
 
   def show

@@ -1,12 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+
+<% if current_user && current_user.role != "admin" %>
+<h2>Stats</h2>
+<p>
+    Your total score is <%= total_score(current_user) %> points. 
+</p>
+<% end %>
+
+<h2>Games</h2>
 <table>
     <thead>
       <tr>
         <th>Challenger</th>
         <th>Invitee</th>
         <th>Status</th>
+        <th><% if current_user && current_user.role != "admin" %>Score<% end %></th>
         <th></th>
+
 
     </thead>
     <tbody>
@@ -22,11 +33,15 @@
           <td><%= game.invitee.try(:name) %></td>
           <td>
             <% if game.winning_game? %>
-              Winner: <%= game.moves.last.user.name %>
+              Winner: <%= game.last_turn.name %>
             <% elsif game.drawn_game? %>
               Draw
             <% else %>
               Turn: <%= game.whose_turn.name %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user && current_user.role != "admin" %> <%= game.score(current_user)%>
             <% end %>
           </td>
           <td>
@@ -36,7 +51,6 @@
             <% end %>
           </td>
         </tr>
-
       <% end %>
     </tbody>
   </table>

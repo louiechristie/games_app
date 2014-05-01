@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     self.role.to_s == role.to_s
   end
 
+  before_save do |user|
+    user.role = "user"
+  end
+
 end

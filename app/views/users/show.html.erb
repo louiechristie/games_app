@@ -6,6 +6,12 @@
 
 <p><strong>Email: </strong><%= @user.try(:email) %></p>
 
-<p><%= link_to "Edit", edit_user_path %></p>
+<p><strong>Score: </strong><%= total_score(@user) %></p>
+
+<% if current_user && (current_user == @user || current_user.role = "admin") %>
+<p>
+  <%= link_to "Edit", edit_user_path %>
+</p>
+<% end %>
 
 <p><%= link_to "Home", games_path %></p>

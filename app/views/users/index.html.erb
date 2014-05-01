@@ -2,18 +2,17 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Email</th>
-        <th>Password Set</th>
+        <th>Score</th>
         <th></th>
 
     </thead>
     <tbody>
-      <% @users.sort_by{|e| e[:created_at]}.reverse!.each do |user| %>
+      <% @users.sort_by{|a,b| total_score(b) <=> total_score(a)}.each do |user| %>
+
       <tr>
           <td><%= user.try(:name) %></td>
-          <td><%= user.try(:email) %></td>
           <td>
-            <%= !!user.try(:password_digest) %>
+            <%= total_score(user) %> points
           </td>
           <td><%= link_to("Show", user_path(user.id)) %></td>
         </tr>

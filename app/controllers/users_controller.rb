@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    if current_user && current_user.role == "admin"
+      @users = User.all
+    else
+      @users = User.where(role: "user")
+    end
+    
   end
 
   def show
@@ -17,7 +22,11 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(params[:user])
     if @user.save
-     redirect_to users_path
+      if current_user && current_user.role == "admin"
+        redirect_to users_path
+      else
+        redirect_to new_session_path 
+      end
     else
      render 'new'
     end
