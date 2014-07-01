@@ -7,7 +7,8 @@
 <h2>Your Games</h2>
 
 <% elsif !current_user %>
-  <h2>Welcome</h2> 
+  <h2>Welcome to Tic Tack Toe</h2>
+  <p>This is a website for playing Tic Tack Toe. Play against the computer, or a friend.</p>
   <p>You are not logged in.  <%= link_to 'Login', login_path %>,  or <%= link_to "sign up", new_user_path %>.</p>
   <h2>Games Being Played</h2>
 
