@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby "2.6.3"
 
-gem 'rails', '5.0.0'
+gem 'rails', '5.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -9,15 +10,14 @@ group :production do
   gem 'pg'
 end
 
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'cancan'
-
+gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'cancancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 5.0.5'
-  gem 'coffee-rails', '~> 4.1.1'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -26,6 +26,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '>= 4.0.1'
+gem 'protected_attributes_continued'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
