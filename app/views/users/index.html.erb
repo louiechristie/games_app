@@ -15,7 +15,13 @@
       <% @users.each do |user| %>
 
       <tr>
-          <td><%= link_to(user.try(:name), user_path(user.id)) %> </td>
+          <td>
+            <% if current_user && (current_user == @user || current_user.role == "admin") %>
+              <%= link_to(user.try(:name), user_path(user.id)) %>
+            <% else %>
+              <%= user.name %>
+            <% end %>
+          </td>
           <td>
             <%= total_score(user) %> points
           </td>

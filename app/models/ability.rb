@@ -10,6 +10,7 @@ class Ability
       can :read, Game 
       can :read, Move
       can :read, User
+      can [:update, :destroy], User, id: user.id
       can :create, Game
       can :create, Move
     else
