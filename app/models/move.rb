@@ -21,11 +21,11 @@ class Move < ActiveRecord::Base
   end
 
   def game_in_progress
-    errors.add(:game, "is finished") if game&& game.game_is_finished?
+    errors.add(:game, "is finished") if game && game.game_is_finished?
   end
 
   def square_is_empty
-  errors.add(:square, "is already played.") if game && game.board[square]
+  errors.add(:square, "is already played.") if game && game.board[square].present?
   end
 
   def valid_user
@@ -33,7 +33,7 @@ class Move < ActiveRecord::Base
   end
 
   def users_turn
-    errors.add(:user, "is not their turn.") if user &&game && user != game.whose_turn
+    errors.add(:user, " it's not their turn. It's the turn of #{game.whose_turn.name}") if user && game && user != game.whose_turn
   end
 
   def square_in_bounds

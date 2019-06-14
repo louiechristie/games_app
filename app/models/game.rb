@@ -95,13 +95,13 @@ class Game < ActiveRecord::Base
   end
 
   def whose_turn
-    return challenger if moves.empty?
-    moves.last.user == challenger ? invitee : challenger
+    return challenger if !last_turn
+    return last_turn == challenger ? invitee : challenger
   end
 
   def last_turn
-    return nil if moves.empty?
-    return moves.last.user
+    return nil if (moves.order(created_at: :desc)).empty?
+    return (moves.order(created_at: :desc)).first.user
   end
 
   def one_of_my_players?(user)
