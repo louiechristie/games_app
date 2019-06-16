@@ -1,5 +1,0 @@
-== Games App
-
-Online gaming portal for playing tic tac toe. Made with Ruby on Rails, HTML 5, CSS3
-
-http://games.louiechristie.com
