@@ -16,8 +16,8 @@ gem 'cancancan'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 5.0.5'
-  gem 'coffee-rails'
+  gem 'sass-rails', '~> 5.0.7'
+  gem 'coffee-rails', '>= 5.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -25,7 +25,7 @@ group :assets do
   gem 'uglifier', '>= 2.7.2'
 end
 
-gem 'jquery-rails', '>= 4.0.1'
+gem 'jquery-rails', '>= 4.3.5'
 gem 'protected_attributes_continued'
 
 # To use ActiveModel has_secure_password
