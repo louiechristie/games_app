@@ -44,6 +44,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'binding_of_caller'
-  gem 'better_errors'
+  gem 'better_errors', '>= 2.5.1'
   gem 'letter_opener'
 end
