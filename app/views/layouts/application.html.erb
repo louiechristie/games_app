@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Games App</title>
+  <title>Tic-tac-toe</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <header>
-    <ul>
-      <li>
-      <%= link_to "Games", games_path %>
-      </li>
-      <li>
-      <% if can? :create, Game %>
-        <%= link_to "New Game", new_game_path %>
-      <% end %>
-      </li>
-      <li>
-      <% if can? :manage, User %>
-        <%= link_to "Users", users_path %>
-      <% else %>
-        <%= link_to "Scoreboard", users_path %>
-      <% end %>
-      </li>
-      
-      <% if can? :manage, User %>
-      <li>
-      <%= link_to "New User", new_user_path %>
-      </li>
-      <% elsif can? :create, User %>
-      <li>
-      <%= link_to "Sign Up", new_user_path %>
-      </li>
-      <% end %>
+    <nav>
+      <ul>
+        <li>
+        <%= link_to "Games", games_path %>
+        </li>
+        <li>
+        <% if can? :create, Game %>
+          <%= link_to "New Game", new_game_path %>
+        <% end %>
+        </li>
+        <li>
+        <% if can? :manage, User %>
+          <%= link_to "Users", users_path %>
+        <% else %>
+          <%= link_to "Scoreboard", users_path %>
+        <% end %>
+        </li>
+        
+        <% if can? :manage, User %>
+        <li>
+        <%= link_to "New User", new_user_path %>
+        </li>
+        <% elsif can? :create, User %>
+        <li>
+        <%= link_to "Sign Up", new_user_path %>
+        </li>
+        <% end %>
 
-      <% if current_user %>
-      <li>
-        <%= link_to(current_user.name, user_path(current_user.id)) %>
-      </li>
-      <li>
-        <%= link_to('Logout', session_path(session), method: :delete) %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to 'Login', login_path %>
-      </li>
-      <% end %>
-     </ul>
+        <% if current_user %>
+        <li>
+          <%= link_to(current_user.name, user_path(current_user.id)) %>
+        </li>
+        <li>
+          <%= link_to('Logout', session_path(session), method: :delete) %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to 'Login', login_path %>
+        </li>
+        <% end %>
+      </ul>
+    <nav>
+
 
   </header>
   <div class="container">
@@ -55,7 +58,7 @@
   </div>
 
   <footer>
-    Made by <a href="https://www.louiechristie.com">Louie Christie 2014 (2019)</a>
+    Made by <a href="https://www.louiechristie.com">Louie Christie</a> 2014 (2019, 2020)
   </footer>
 
 </body>

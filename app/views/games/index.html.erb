@@ -2,29 +2,53 @@
 
 
 <% if current_user && current_user.role != "admin" %>
+
 <h1>Your Score: <%= total_score(current_user) %> points</h1> 
 </p>
 <h2>Your Games</h2>
 
 <% elsif !current_user %>
-  <h2>Welcome to Tic Tack Toe</h2>
-  <p>This is a website for playing Tic Tack Toe. Play against the computer, or a friend.</p>
+  <h1>Welcome to Tic-tac-toe</h1>
+  <p>Playing <a href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic Tack Toe</a> (noughts and crosses) against the computer, or a friend.</p>
   <p>You are not logged in.  <%= link_to 'Login', login_path %>,  or <%= link_to "sign up", new_user_path %>.</p>
-  <h2>Games Being Played</h2>
+
+  <h2>Latest Game</h2>
+  <% @game = @games.first %>
+
+  <table>
+    <tr>
+      <td><%= render "board" %></td>
+      <td><%= @game.challenger.try(:name) %> vs <%= @game.invitee.try(:name) %></td>
+      <td>
+        <% if @game.winning_game? %>
+              <span class="won"><%= link_to("Winner: #{@game.last_turn.name}", game_path(@game.id)) %></span>
+        <% elsif @game.drawn_game? %>
+              <span class="draw"><%= link_to("Draw", game_path(@game.id)) %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+  </table>
 
 <% else %>
   <h1>Admin Console</h1>
-  <h2>Games Being Played</h2>
 <% end %>
 
-<table>
+<h2>Games</h2>
+
+
+<table class="games-table">
     <thead>
       <tr>
         <th>Challenger</th>
         <th>Invitee</th>
         <th>Status</th>
-        <th><% if current_user && current_user.role != "admin" %>Score<% end %></th>
-        <th></th>
+        <% if current_user && current_user.role != "admin" %>
+          <th>
+            Score
+          </th>
+        <% end %>
+        <% if current_user && current_user.role == "admin" %><th></th><% end %>
         <th>Started</th>
     </thead>
 
@@ -56,15 +80,18 @@
                 <% end %>
             <% end %>
           </td>
-          <td>
-            <% if current_user && current_user.role != "admin" %> <%= game.score(current_user)%>
-            <% end %>
-          </td>
-          <td>
-            <% if can? :destory, Game %>
-              <%= link_to("Delete", game_path(game.id), method: :delete) %>
-            <% end %>
-          </td>
+          <% if current_user && current_user.role != "admin" %>
+            <td>
+              <%= game.score(current_user)%>
+            </td>
+          <% end %>
+          <% if current_user && current_user.role == "admin" %>
+            <td>
+              <% if can? :destory, Game %>
+                <%= link_to("Delete", game_path(game.id), method: :delete) %>
+              <% end %>
+            </td>
+          <% end %>
           <td><%= time_ago_in_words(game.try(:created_at)) %> ago</td>
         </tr>
       <% end %>
