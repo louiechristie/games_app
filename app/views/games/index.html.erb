@@ -20,7 +20,6 @@
 <table>
     <thead>
       <tr>
-        <th>Board</th>
         <th>Challenger</th>
         <th>Invitee</th>
         <th>Status</th>
@@ -38,9 +37,6 @@
       <% else %>
         <tr>
       <% end %>
-          <td>
-            <% @game = game %><%= render "board" %>
-          </td>
           <td><%= game.challenger.try(:name) %></td>
           <td><%= game.invitee.try(:name) %></td>
           <td>
