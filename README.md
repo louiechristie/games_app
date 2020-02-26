@@ -4,7 +4,7 @@ Online gaming portal for playing tic tac toe. Made with Ruby on Rails, HTML 5, C
 
 ## Live site
 
-http://games.louiechristie.com
+<http://games.louiechristie.com>
 
 ## Setup Locally
 
